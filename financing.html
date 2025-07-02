@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financing Calculator - Luxury Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        .financing-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/b1.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .financing-section {
+            padding: 80px 0;
+            background: #f8f8f8;
+        }
+        
+        .financing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .financing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .calculator-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .calculator-card h2 {
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .calculator-form {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .input-group label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .input-group input,
+        .input-group select {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+        
+        .range-input {
+            position: relative;
+        }
+        
+        .range-input input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .range-input input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ffd700;
+            cursor: pointer;
+        }
+        
+        .range-input input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ffd700;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .range-value {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        .results-card {
+            background: linear-gradient(135deg, #333, #000);
+            color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .results-card h2 {
+            margin-bottom: 30px;
+            color: #ffd700;
+        }
+        
+        .payment-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 30px 0;
+        }
+        
+        .payment-breakdown {
+            display: grid;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .financing-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .option-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .option-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .option-card h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .option-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .option-rate {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .trade-in-section {
+            background: #fff;
+            padding: 60px 0;
+            margin-top: 60px;
+            border-radius: 15px;
+        }
+        
+        .trade-in-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .trade-in-content h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .trade-in-content p {
+            margin-bottom: 30px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .trade-in-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .estimate-result {
+            background: #f8f8f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .estimate-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .financing-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-display {
+                font-size: 2rem;
+            }
+            
+            .trade-in-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/images/letter-l-icon-7.png" alt="Luxury Motors">
+                <span>Luxury Motors</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="cars.html" class="nav-link">Inventory</a></li>
+                <li><a href="virtual-tour.html" class="nav-link">Virtual Tour</a></li>
+                <li><a href="financing.html" class="nav-link">Financing</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Financing Hero -->
+    <section class="financing-hero">
+        <div>
+            <h1>Financing Calculator</h1>
+            <p>Calculate your monthly payments and explore financing options</p>
+        </div>
+    </section>
+
+    <!-- Financing Section -->
+    <section class="financing-section">
+        <div class="financing-container">
+            <div class="financing-grid">
+                <!-- Calculator Card -->
+                <div class="calculator-card">
+                    <h2>Payment Calculator</h2>
+                    <div class="calculator-form">
+                        <div class="input-group">
+                            <label for="vehicle-price">Vehicle Price</label>
+                            <input type="number" id="vehicle-price" value="500000" min="0" step="1000">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="down-payment">Down Payment</label>
+                                <input type="number" id="down-payment" value="100000" min="0" step="1000">
+                            </div>
+                            <div class="input-group">
+                                <label for="trade-value">Trade-in Value</label>
+                                <input type="number" id="trade-value" value="0" min="0" step="1000">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="loan-term">Loan Term</label>
+                                <select id="loan-term">
+                                    <option value="36">36 months</option>
+                                    <option value="48">48 months</option>
+                                    <option value="60" selected>60 months</option>
+                                    <option value="72">72 months</option>
+                                    <option value="84">84 months</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="credit-score">Credit Score</label>
+                                <select id="credit-score">
+                                    <option value="excellent">Excellent (750+)</option>
+                                    <option value="good" selected>Good (700-749)</option>
+                                    <option value="fair">Fair (650-699)</option>
+                                    <option value="poor">Poor (600-649)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group range-input">
+                            <label for="interest-rate">Interest Rate (%)</label>
+                            <input type="range" id="interest-rate" min="1" max="15" value="3.9" step="0.1">
+                            <div class="range-value" id="rate-display">3.9%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Results Card -->
+                <div class="results-card">
+                    <h2>Monthly Payment</h2>
+                    <div class="payment-display" id="monthly-payment">$0</div>
+                    
+                    <div class="payment-breakdown">
+                        <div class="breakdown-item">
+                            <span>Loan Amount:</span>
+                            <span id="loan-amount">$0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Total Interest:</span>
+                            <span id="total-interest">$0</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Total Payment:</span>
+                            <span id="total-payment">$0</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary" onclick="applyForFinancing()">Apply for Financing</button>
+                </div>
+            </div>
+            
+            <!-- Financing Options -->
+            <div class="financing-options">
+                <div class="option-card">
+                    <div class="option-icon">🏆</div>
+                    <h3>Excellent Credit</h3>
+                    <div class="option-rate">2.9% APR</div>
+                    <p>For customers with excellent credit scores (750+). Enjoy our lowest rates and best terms.</p>
+                    <button class="btn-outline">Learn More</button>
+                </div>
+                
+                <div class="option-card">
+                    <div class="option-icon">⭐</div>
+                    <h3>Good Credit</h3>
+                    <div class="option-rate">3.9% APR</div>
+                    <p>Competitive rates for customers with good credit history. Quick approval process.</p>
+                    <button class="btn-outline">Learn More</button>
+                </div>
+                
+                <div class="option-card">
+                    <div class="option-icon">🤝</div>
+                    <h3>Special Programs</h3>
+                    <div class="option-rate">Custom Rates</div>
+                    <p>Special financing programs for first-time buyers, military, and recent graduates.</p>
+                    <button class="btn-outline">Learn More</button>
+                </div>
+                
+                <div class="option-card">
+                    <div class="option-icon">💼</div>
+                    <h3>Lease Options</h3>
+                    <div class="option-rate">Starting at $2,999/mo</div>
+                    <p>Flexible lease terms with options to purchase. Lower monthly payments available.</p>
+                    <button class="btn-outline">Learn More</button>
+                </div>
+            </div>
+            
+            <!-- Trade-in Section -->
+            <div class="trade-in-section">
+                <div class="trade-in-content">
+                    <h2>Trade-in Value Calculator</h2>
+                    <p>Get an instant estimate of your current vehicle's trade-in value</p>
+                    
+                    <div class="trade-in-form">
+                        <input type="text" id="trade-make" placeholder="Make (e.g., BMW)">
+                        <input type="text" id="trade-model" placeholder="Model (e.g., M3)">
+                        <input type="number" id="trade-year" placeholder="Year" min="1990" max="2024">
+                        <input type="number" id="trade-mileage" placeholder="Mileage">
+                        <select id="trade-condition">
+                            <option value="">Condition</option>
+                            <option value="excellent">Excellent</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                            <option value="poor">Poor</option>
+                        </select>
+                        <button class="btn-primary" onclick="calculateTradeValue()">Get Estimate</button>
+                    </div>
+                    
+                    <div class="estimate-result" id="trade-estimate" style="display: none;">
+                        <div class="estimate-value" id="estimate-value">$0</div>
+                        <p>Estimated trade-in value based on current market conditions</p>
+                        <button class="btn-secondary" onclick="scheduleAppraisal()">Schedule Appraisal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/letter-l-icon-7.png" alt="Luxury Motors">
+                    <span>Luxury Motors</span>
+                </div>
+                <p>&copy; 2024 Luxury Motors. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            setupCalculator();
+            calculatePayment();
+        });
+
+        function setupCalculator() {
+            // Add event listeners
+            document.getElementById('vehicle-price').addEventListener('input', calculatePayment);
+            document.getElementById('down-payment').addEventListener('input', calculatePayment);
+            document.getElementById('trade-value').addEventListener('input', calculatePayment);
+            document.getElementById('loan-term').addEventListener('change', calculatePayment);
+            document.getElementById('credit-score').addEventListener('change', updateInterestRate);
+            document.getElementById('interest-rate').addEventListener('input', updateRateDisplay);
+            
+            // Update rate display
+            updateRateDisplay();
+        }
+
+        function updateRateDisplay() {
+            const rate = document.getElementById('interest-rate').value;
+            document.getElementById('rate-display').textContent = rate + '%';
+            calculatePayment();
+        }
+
+        function updateInterestRate() {
+            const creditScore = document.getElementById('credit-score').value;
+            const rateInput = document.getElementById('interest-rate');
+            
+            const rates = {
+                excellent: 2.9,
+                good: 3.9,
+                fair: 5.9,
+                poor: 8.9
+            };
+            
+            rateInput.value = rates[creditScore];
+            updateRateDisplay();
+        }
+
+        function calculatePayment() {
+            const vehiclePrice = parseFloat(document.getElementById('vehicle-price').value) || 0;
+            const downPayment = parseFloat(document.getElementById('down-payment').value) || 0;
+            const tradeValue = parseFloat(document.getElementById('trade-value').value) || 0;
+            const loanTerm = parseInt(document.getElementById('loan-term').value) || 60;
+            const interestRate = parseFloat(document.getElementById('interest-rate').value) || 3.9;
+            
+            const loanAmount = vehiclePrice - downPayment - tradeValue;
+            const monthlyRate = (interestRate / 100) / 12;
+            
+            let monthlyPayment = 0;
+            let totalInterest = 0;
+            
+            if (loanAmount > 0 && monthlyRate > 0) {
+                monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, loanTerm)) / 
+                                (Math.pow(1 + monthlyRate, loanTerm) - 1);
+                totalInterest = (monthlyPayment * loanTerm) - loanAmount;
+            }
+            
+            const totalPayment = loanAmount + totalInterest;
+            
+            // Update display
+            document.getElementById('monthly-payment').textContent = 
+                '$' + monthlyPayment.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('loan-amount').textContent = 
+                '$' + loanAmount.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('total-interest').textContent = 
+                '$' + totalInterest.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('total-payment').textContent = 
+                '$' + totalPayment.toLocaleString('en-US', {maximumFractionDigits: 0});
+        }
+
+        function calculateTradeValue() {
+            const make = document.getElementById('trade-make').value;
+            const model = document.getElementById('trade-model').value;
+            const year = document.getElementById('trade-year').value;
+            const mileage = document.getElementById('trade-mileage').value;
+            const condition = document.getElementById('trade-condition').value;
+            
+            if (!make || !model || !year || !mileage || !condition) {
+                showNotification('Please fill in all trade-in fields', 'warning');
+                return;
+            }
+            
+            // Simulate trade-in calculation
+            const baseValue = Math.max(0, (2024 - year) * 2000 + Math.random() * 20000);
+            const mileageAdjustment = Math.max(0, (200000 - mileage) / 10);
+            const conditionMultiplier = {
+                excellent: 1.2,
+                good: 1.0,
+                fair: 0.8,
+                poor: 0.6
+            };
+            
+            const estimatedValue = (baseValue + mileageAdjustment) * conditionMultiplier[condition];
+            
+            document.getElementById('estimate-value').textContent = 
+                '$' + Math.round(estimatedValue).toLocaleString();
+            document.getElementById('trade-estimate').style.display = 'block';
+            
+            // Update trade value in calculator
+            document.getElementById('trade-value').value = Math.round(estimatedValue);
+            calculatePayment();
+        }
+
+        function applyForFinancing() {
+            showNotification('Financing application initiated! Our team will contact you within 24 hours.', 'success');
+        }
+
+        function scheduleAppraisal() {
+            showNotification('Appraisal scheduled! We will contact you to confirm the appointment.', 'success');
+        }
+    </script>
+</body>
+</html>

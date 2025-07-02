@@ -1055,3 +1055,248 @@ document.addEventListener('keypress', function(e) {
         sendMessage();
     }
 });
+
+// Image Carousel Functionality
+let currentCarouselSlideIndex = 0;
+const totalCarouselSlides = 5;
+
+function moveCarousel(direction) {
+    currentCarouselSlideIndex += direction;
+
+    if (currentCarouselSlideIndex >= totalCarouselSlides) {
+        currentCarouselSlideIndex = 0;
+    } else if (currentCarouselSlideIndex < 0) {
+        currentCarouselSlideIndex = totalCarouselSlides - 1;
+    }
+
+    updateCarousel();
+}
+
+function currentCarouselSlide(slideIndex) {
+    currentCarouselSlideIndex = slideIndex - 1;
+    updateCarousel();
+}
+
+function updateCarousel() {
+    const track = document.getElementById('carousel-track');
+    const indicators = document.querySelectorAll('.indicator');
+
+    if (track) {
+        const translateX = -currentCarouselSlideIndex * 100;
+        track.style.transform = `translateX(${translateX}%)`;
+    }
+
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentCarouselSlideIndex);
+    });
+}
+
+// Auto-play carousel
+function startCarouselAutoplay() {
+    setInterval(() => {
+        moveCarousel(1);
+    }, 5000); // Change slide every 5 seconds
+}
+
+// Video Preview Modal
+function openVideoPreview(videoSrc) {
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('video-preview-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'video-preview-modal';
+        modal.className = 'video-preview-modal';
+        modal.innerHTML = `
+            <div class="video-preview-content">
+                <span class="video-preview-close" onclick="closeVideoPreview()">&times;</span>
+                <video controls autoplay>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        // Close on background click
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeVideoPreview();
+            }
+        });
+    }
+
+    const video = modal.querySelector('video');
+    video.src = videoSrc;
+    modal.classList.add('show');
+}
+
+function closeVideoPreview() {
+    const modal = document.getElementById('video-preview-modal');
+    if (modal) {
+        const video = modal.querySelector('video');
+        video.pause();
+        video.src = '';
+        modal.classList.remove('show');
+    }
+}
+
+// Enhanced Image Gallery with Lightbox
+function createImageLightbox() {
+    // Add click events to all car images
+    document.querySelectorAll('.car-card img, .gallery-item img').forEach(img => {
+        img.addEventListener('click', function() {
+            openImageLightbox(this.src, this.alt);
+        });
+    });
+}
+
+function openImageLightbox(imageSrc, imageAlt) {
+    // Create lightbox if it doesn't exist
+    let lightbox = document.getElementById('image-lightbox');
+    if (!lightbox) {
+        lightbox = document.createElement('div');
+        lightbox.id = 'image-lightbox';
+        lightbox.className = 'video-preview-modal';
+        lightbox.innerHTML = `
+            <div class="video-preview-content">
+                <span class="video-preview-close" onclick="closeImageLightbox()">&times;</span>
+                <img src="" alt="" style="width: 100%; height: 100%; object-fit: contain; border-radius: 10px;">
+            </div>
+        `;
+        document.body.appendChild(lightbox);
+
+        // Close on background click
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeImageLightbox();
+            }
+        });
+    }
+
+    const img = lightbox.querySelector('img');
+    img.src = imageSrc;
+    img.alt = imageAlt;
+    lightbox.classList.add('show');
+}
+
+function closeImageLightbox() {
+    const lightbox = document.getElementById('image-lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('show');
+    }
+}
+
+// Enhanced Media Loading
+function preloadImages() {
+    const imageUrls = [
+        'assets/images/BACKBUG.jpg',
+        'assets/images/BACKBUG2.jpg',
+        'assets/images/chiron.jpg',
+        'assets/images/mclaren.jpg',
+        'assets/images/hurican.jpg',
+        'assets/images/sian.jpg',
+        'assets/images/rolls1.jpg',
+        'assets/images/jesko.jpg',
+        'assets/images/divo2.jpg',
+        'assets/images/mc720.jpg',
+        'assets/images/ursu.jpg',
+        'assets/images/rols2.jpg',
+        'assets/images/rev.jpg',
+        'assets/images/back1.jpeg',
+        'assets/images/b1.jpeg'
+    ];
+
+    imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+}
+
+// Image Lazy Loading
+function setupLazyLoading() {
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+}
+
+// Enhanced Slideshow with Touch Support
+function setupTouchCarousel() {
+    const carousel = document.querySelector('.carousel-container');
+    if (!carousel) return;
+
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+
+    carousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
+
+    carousel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+    });
+
+    carousel.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+
+        const diffX = startX - currentX;
+        if (Math.abs(diffX) > 50) { // Minimum swipe distance
+            if (diffX > 0) {
+                moveCarousel(1); // Swipe left - next slide
+            } else {
+                moveCarousel(-1); // Swipe right - previous slide
+            }
+        }
+    });
+}
+
+// Image Zoom Effect
+function setupImageZoom() {
+    document.querySelectorAll('.car-card img').forEach(img => {
+        img.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+
+        img.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+    });
+}
+
+// Initialize all media features
+document.addEventListener('DOMContentLoaded', function() {
+    // Start carousel autoplay
+    if (document.getElementById('carousel-track')) {
+        startCarouselAutoplay();
+        setupTouchCarousel();
+    }
+
+    // Setup image features
+    createImageLightbox();
+    preloadImages();
+    setupLazyLoading();
+    setupImageZoom();
+});
+
+// Close modals on escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeVideoPreview();
+        closeImageLightbox();
+    }
+});

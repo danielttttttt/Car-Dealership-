@@ -18,10 +18,12 @@
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link" data-translate="home">Home</a></li>
                 <li><a href="cars.html" class="nav-link" data-translate="inventory">Inventory</a></li>
+                <li><a href="virtual-tour.html" class="nav-link">Virtual Tour</a></li>
+                <li><a href="financing.html" class="nav-link">Financing</a></li>
                 <li><a href="#about" class="nav-link" data-translate="about">About</a></li>
                 <li><a href="#contact" class="nav-link" data-translate="contact">Contact</a></li>
                 <li><a href="#" class="nav-link favorites-link">❤️ <span class="favorites-count">0</span></a></li>
-                <li><a href="#" class="nav-link comparison-link" onclick="showComparison()">⚖️ <span class="comparison-count">0</span></a></li>
+                <li><a href="comparison.html" class="nav-link comparison-link">⚖️ <span class="comparison-count">0</span></a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -33,10 +35,6 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <video autoplay muted loop class="hero-video">
-            <source src="assets/videos/bug.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 data-translate="experienceLuxury">Experience Luxury</h1>
             <p data-translate="discoverCars">Discover the world's most exclusive supercars</p>
@@ -137,6 +135,63 @@
             </div>
         </div>
     </section>
+
+    <!-- Image Carousel Section -->
+    <section class="image-carousel-section">
+        <div class="container">
+            <h2>Luxury Gallery Showcase</h2>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-slide">
+                        <img src="assets/images/BACKBUG.jpg" alt="Bugatti Collection">
+                        <div class="slide-overlay">
+                            <h3>Bugatti Collection</h3>
+                            <p>Exclusive hypercar showcase</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/BACKBUG2.jpg" alt="Luxury Showroom">
+                        <div class="slide-overlay">
+                            <h3>Premium Showroom</h3>
+                            <p>World-class luxury experience</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/divo2.jpg" alt="Bugatti Divo">
+                        <div class="slide-overlay">
+                            <h3>Bugatti Divo</h3>
+                            <p>Track-focused masterpiece</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/mc720.jpg" alt="McLaren 720S">
+                        <div class="slide-overlay">
+                            <h3>McLaren 720S</h3>
+                            <p>British engineering excellence</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/images/rols2.jpg" alt="Rolls-Royce">
+                        <div class="slide-overlay">
+                            <h3>Rolls-Royce Collection</h3>
+                            <p>Ultimate luxury experience</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">❮</button>
+                <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">❯</button>
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="currentCarouselSlide(1)"></span>
+                    <span class="indicator" onclick="currentCarouselSlide(2)"></span>
+                    <span class="indicator" onclick="currentCarouselSlide(3)"></span>
+                    <span class="indicator" onclick="currentCarouselSlide(4)"></span>
+                    <span class="indicator" onclick="currentCarouselSlide(5)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- About Section -->
     <section id="about" class="about">
