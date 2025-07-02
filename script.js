@@ -114,6 +114,168 @@ const carDatabase = [
             weight: "3,516 lbs"
         },
         features: ["Hybrid Technology", "Supercapacitor", "Active Aerodynamics", "Limited Edition"]
+    },
+    {
+        id: 7,
+        name: "Bugatti Divo",
+        brand: "Bugatti",
+        price: 5800000,
+        year: 2024,
+        hp: 1479,
+        topSpeed: 236,
+        image: "assets/images/divo2.jpg",
+        images: ["assets/images/divo2.jpg", "assets/images/divo3.jpeg"],
+        specs: {
+            engine: "8.0L W16 Quad-Turbo",
+            transmission: "7-Speed DSG",
+            acceleration: "2.4 seconds 0-60mph",
+            weight: "4,321 lbs"
+        },
+        features: ["Track-Focused Design", "Enhanced Aerodynamics", "Lightweight Construction", "Limited Edition"]
+    },
+    {
+        id: 8,
+        name: "McLaren 720S Spider",
+        brand: "McLaren",
+        price: 335000,
+        year: 2024,
+        hp: 710,
+        topSpeed: 212,
+        image: "assets/images/mc720.jpg",
+        images: ["assets/images/mc720.jpg", "assets/images/mclaren.jpg"],
+        specs: {
+            engine: "4.0L V8 Twin-Turbo",
+            transmission: "7-Speed SSG",
+            acceleration: "2.9 seconds 0-60mph",
+            weight: "3,236 lbs"
+        },
+        features: ["Retractable Hardtop", "Dihedral Doors", "Carbon Fiber Body", "Open-Air Experience"]
+    },
+    {
+        id: 9,
+        name: "Lamborghini Urus",
+        brand: "Lamborghini",
+        price: 218000,
+        year: 2024,
+        hp: 641,
+        topSpeed: 190,
+        image: "assets/images/ursu.jpg",
+        images: ["assets/images/ursu.jpg"],
+        specs: {
+            engine: "4.0L V8 Twin-Turbo",
+            transmission: "8-Speed Automatic",
+            acceleration: "3.6 seconds 0-60mph",
+            weight: "4,850 lbs"
+        },
+        features: ["Super SUV Performance", "All-Wheel Drive", "Adaptive Air Suspension", "Luxury Interior"]
+    },
+    {
+        id: 10,
+        name: "Rolls-Royce Cullinan",
+        brand: "Rolls-Royce",
+        price: 330000,
+        year: 2024,
+        hp: 563,
+        topSpeed: 155,
+        image: "assets/images/rols2.jpg",
+        images: ["assets/images/rols2.jpg", "assets/images/rolls1.jpg"],
+        specs: {
+            engine: "6.75L V12 Twin-Turbo",
+            transmission: "8-Speed Automatic",
+            acceleration: "5.2 seconds 0-60mph",
+            weight: "5,864 lbs"
+        },
+        features: ["Luxury SUV", "All-Terrain Capability", "Bespoke Interior", "Magic Carpet Ride"]
+    },
+    {
+        id: 11,
+        name: "Rolls-Royce Ghost",
+        brand: "Rolls-Royce",
+        price: 315000,
+        year: 2024,
+        hp: 563,
+        topSpeed: 155,
+        image: "assets/images/rols3.jpg",
+        images: ["assets/images/rols3.jpg", "assets/images/rolls1.jpg"],
+        specs: {
+            engine: "6.75L V12 Twin-Turbo",
+            transmission: "8-Speed Automatic",
+            acceleration: "4.8 seconds 0-60mph",
+            weight: "5,628 lbs"
+        },
+        features: ["Modern Luxury", "Whisper Quiet Cabin", "Starlight Headliner", "Effortless Performance"]
+    },
+    {
+        id: 12,
+        name: "Koenigsegg Regera",
+        brand: "Koenigsegg",
+        price: 1900000,
+        year: 2024,
+        hp: 1500,
+        topSpeed: 251,
+        image: "assets/images/rev.jpg",
+        images: ["assets/images/rev.jpg", "assets/images/jesko.jpg"],
+        specs: {
+            engine: "5.0L V8 Twin-Turbo + Electric Motors",
+            transmission: "Direct Drive",
+            acceleration: "2.8 seconds 0-60mph",
+            weight: "3,510 lbs"
+        },
+        features: ["Hybrid Powertrain", "Direct Drive System", "Carbon Fiber Construction", "Revolutionary Technology"]
+    },
+    {
+        id: 13,
+        name: "Ferrari SF90 Stradale",
+        brand: "Ferrari",
+        price: 625000,
+        year: 2024,
+        hp: 986,
+        topSpeed: 211,
+        image: "assets/images/b1.jpeg",
+        images: ["assets/images/b1.jpeg"],
+        specs: {
+            engine: "4.0L V8 Twin-Turbo + Electric Motors",
+            transmission: "8-Speed DCT",
+            acceleration: "2.5 seconds 0-60mph",
+            weight: "3,461 lbs"
+        },
+        features: ["Plug-in Hybrid", "All-Wheel Drive", "Active Aerodynamics", "Track Performance"]
+    },
+    {
+        id: 14,
+        name: "Aston Martin Valkyrie",
+        brand: "Aston Martin",
+        price: 3200000,
+        year: 2024,
+        hp: 1160,
+        topSpeed: 250,
+        image: "assets/images/lavoui.jpg",
+        images: ["assets/images/lavoui.jpg"],
+        specs: {
+            engine: "6.5L V12 Naturally Aspirated + Electric Motor",
+            transmission: "7-Speed Manual",
+            acceleration: "2.5 seconds 0-60mph",
+            weight: "2,271 lbs"
+        },
+        features: ["F1-Inspired Design", "Carbon Fiber Monocoque", "Active Aerodynamics", "Track-Focused"]
+    },
+    {
+        id: 15,
+        name: "Pagani Huayra",
+        brand: "Pagani",
+        price: 2800000,
+        year: 2024,
+        hp: 730,
+        topSpeed: 238,
+        image: "assets/images/back1.jpeg",
+        images: ["assets/images/back1.jpeg"],
+        specs: {
+            engine: "6.0L V12 Twin-Turbo",
+            transmission: "7-Speed Sequential",
+            acceleration: "3.2 seconds 0-60mph",
+            weight: "2,976 lbs"
+        },
+        features: ["Handcrafted Excellence", "Active Aerodynamics", "Bespoke Interior", "Art on Wheels"]
     }
 ];
 
