@@ -276,6 +276,276 @@ const carDatabase = [
             weight: "2,976 lbs"
         },
         features: ["Handcrafted Excellence", "Active Aerodynamics", "Bespoke Interior", "Art on Wheels"]
+    },
+    {
+        id: 16,
+        name: "Porsche 911 Turbo S",
+        brand: "Porsche",
+        price: 230000,
+        year: 2024,
+        hp: 640,
+        topSpeed: 205,
+        image: "assets/images/chiron.jpg",
+        images: ["assets/images/chiron.jpg"],
+        specs: {
+            engine: "3.8L H6 Twin-Turbo",
+            transmission: "8-Speed PDK",
+            acceleration: "2.6 seconds 0-60mph",
+            weight: "3,640 lbs"
+        },
+        features: ["All-Wheel Drive", "Active Suspension", "Sport Chrono Package", "Precision Engineering"]
+    },
+    {
+        id: 17,
+        name: "Bentley Continental GT",
+        brand: "Bentley",
+        price: 285000,
+        year: 2024,
+        hp: 626,
+        topSpeed: 208,
+        image: "assets/images/mclaren.jpg",
+        images: ["assets/images/mclaren.jpg"],
+        specs: {
+            engine: "6.0L W12 Twin-Turbo",
+            transmission: "8-Speed Dual-Clutch",
+            acceleration: "3.6 seconds 0-60mph",
+            weight: "4,947 lbs"
+        },
+        features: ["Luxury Grand Tourer", "Handcrafted Interior", "All-Wheel Drive", "Diamond Quilted Leather"]
+    },
+    {
+        id: 18,
+        name: "Mercedes-AMG GT Black Series",
+        brand: "Mercedes-AMG",
+        price: 335000,
+        year: 2024,
+        hp: 720,
+        topSpeed: 202,
+        image: "assets/images/hurican.jpg",
+        images: ["assets/images/hurican.jpg"],
+        specs: {
+            engine: "4.0L V8 Twin-Turbo",
+            transmission: "7-Speed DCT",
+            acceleration: "3.1 seconds 0-60mph",
+            weight: "3,616 lbs"
+        },
+        features: ["Track-Focused", "Active Aerodynamics", "Carbon Fiber Body", "Race-Derived Technology"]
+    },
+    {
+        id: 19,
+        name: "Lamborghini Aventador SVJ",
+        brand: "Lamborghini",
+        price: 573000,
+        year: 2024,
+        hp: 759,
+        topSpeed: 217,
+        image: "assets/images/sian.jpg",
+        images: ["assets/images/sian.jpg"],
+        specs: {
+            engine: "6.5L V12 Naturally Aspirated",
+            transmission: "7-Speed ISR",
+            acceleration: "2.8 seconds 0-60mph",
+            weight: "3,362 lbs"
+        },
+        features: ["Aerodinamica Lamborghini Attiva", "Carbon Fiber Construction", "Track Performance", "Limited Production"]
+    },
+    {
+        id: 20,
+        name: "McLaren P1",
+        brand: "McLaren",
+        price: 1350000,
+        year: 2024,
+        hp: 903,
+        topSpeed: 217,
+        image: "assets/images/mc720.jpg",
+        images: ["assets/images/mc720.jpg"],
+        specs: {
+            engine: "3.8L V8 Twin-Turbo + Electric Motor",
+            transmission: "7-Speed DCT",
+            acceleration: "2.8 seconds 0-60mph",
+            weight: "3,411 lbs"
+        },
+        features: ["Hybrid Hypercar", "Active Aerodynamics", "Carbon Fiber Monocoque", "F1 Technology"]
+    },
+    {
+        id: 21,
+        name: "Bugatti Veyron Super Sport",
+        brand: "Bugatti",
+        price: 2400000,
+        year: 2024,
+        hp: 1200,
+        topSpeed: 268,
+        image: "assets/images/divo2.jpg",
+        images: ["assets/images/divo2.jpg"],
+        specs: {
+            engine: "8.0L W16 Quad-Turbo",
+            transmission: "7-Speed DSG",
+            acceleration: "2.4 seconds 0-60mph",
+            weight: "4,387 lbs"
+        },
+        features: ["World Record Holder", "Carbon Fiber Body", "Luxury Interior", "Engineering Marvel"]
+    },
+    {
+        id: 22,
+        name: "Ferrari LaFerrari",
+        brand: "Ferrari",
+        price: 1420000,
+        year: 2024,
+        hp: 950,
+        topSpeed: 217,
+        image: "assets/images/b1.jpeg",
+        images: ["assets/images/b1.jpeg"],
+        specs: {
+            engine: "6.3L V12 + Electric Motor",
+            transmission: "7-Speed DCT",
+            acceleration: "2.4 seconds 0-60mph",
+            weight: "3,495 lbs"
+        },
+        features: ["Hybrid Technology", "F1-Derived Systems", "Carbon Fiber Construction", "Limited Edition"]
+    },
+    {
+        id: 23,
+        name: "Porsche 918 Spyder",
+        brand: "Porsche",
+        price: 845000,
+        year: 2024,
+        hp: 887,
+        topSpeed: 214,
+        image: "assets/images/ursu.jpg",
+        images: ["assets/images/ursu.jpg"],
+        specs: {
+            engine: "4.6L V8 + Electric Motors",
+            transmission: "7-Speed PDK",
+            acceleration: "2.5 seconds 0-60mph",
+            weight: "3,616 lbs"
+        },
+        features: ["Plug-in Hybrid", "All-Wheel Drive", "Active Aerodynamics", "Weissach Package"]
+    },
+    {
+        id: 24,
+        name: "Rolls-Royce Spectre",
+        brand: "Rolls-Royce",
+        price: 422000,
+        year: 2024,
+        hp: 577,
+        topSpeed: 155,
+        image: "assets/images/rols2.jpg",
+        images: ["assets/images/rols2.jpg"],
+        specs: {
+            engine: "Electric Powertrain",
+            transmission: "Single-Speed Automatic",
+            acceleration: "4.5 seconds 0-60mph",
+            weight: "6,559 lbs"
+        },
+        features: ["All-Electric Luxury", "Spirit of Ecstasy", "Starlight Doors", "Whisper Quiet"]
+    },
+    {
+        id: 25,
+        name: "Aston Martin DB12",
+        brand: "Aston Martin",
+        price: 248000,
+        year: 2024,
+        hp: 671,
+        topSpeed: 202,
+        image: "assets/images/lavoui.jpg",
+        images: ["assets/images/lavoui.jpg"],
+        specs: {
+            engine: "4.0L V8 Twin-Turbo",
+            transmission: "8-Speed Automatic",
+            acceleration: "3.5 seconds 0-60mph",
+            weight: "4,134 lbs"
+        },
+        features: ["Grand Tourer", "Luxury Interior", "Active Suspension", "British Craftsmanship"]
+    },
+    {
+        id: 26,
+        name: "Maserati MC20",
+        brand: "Maserati",
+        price: 242000,
+        year: 2024,
+        hp: 621,
+        topSpeed: 202,
+        image: "assets/images/rev.jpg",
+        images: ["assets/images/rev.jpg"],
+        specs: {
+            engine: "3.0L V6 Twin-Turbo",
+            transmission: "8-Speed DCT",
+            acceleration: "2.9 seconds 0-60mph",
+            weight: "3,306 lbs"
+        },
+        features: ["Italian Engineering", "Carbon Fiber Monocoque", "Butterfly Doors", "Racing Heritage"]
+    },
+    {
+        id: 27,
+        name: "Lotus Evija",
+        brand: "Lotus",
+        price: 2100000,
+        year: 2024,
+        hp: 1972,
+        topSpeed: 200,
+        image: "assets/images/BACKBUG.jpg",
+        images: ["assets/images/BACKBUG.jpg"],
+        specs: {
+            engine: "Electric Powertrain",
+            transmission: "Single-Speed",
+            acceleration: "2.3 seconds 0-60mph",
+            weight: "3,704 lbs"
+        },
+        features: ["All-Electric Hypercar", "Advanced Aerodynamics", "Lightweight Construction", "Track Performance"]
+    },
+    {
+        id: 28,
+        name: "Rimac Nevera",
+        brand: "Rimac",
+        price: 2400000,
+        year: 2024,
+        hp: 1914,
+        topSpeed: 258,
+        image: "assets/images/BACKBUG2.jpg",
+        images: ["assets/images/BACKBUG2.jpg"],
+        specs: {
+            engine: "Electric Powertrain",
+            transmission: "Single-Speed",
+            acceleration: "1.85 seconds 0-60mph",
+            weight: "4,740 lbs"
+        },
+        features: ["Electric Hypercar", "All-Wheel Drive", "Advanced AI", "Record Breaking Performance"]
+    },
+    {
+        id: 29,
+        name: "Hennessey Venom F5",
+        brand: "Hennessey",
+        price: 2100000,
+        year: 2024,
+        hp: 1817,
+        topSpeed: 311,
+        image: "assets/images/divo3.jpeg",
+        images: ["assets/images/divo3.jpeg"],
+        specs: {
+            engine: "6.6L V8 Twin-Turbo",
+            transmission: "7-Speed Single-Clutch",
+            acceleration: "2.6 seconds 0-60mph",
+            weight: "2,998 lbs"
+        },
+        features: ["American Hypercar", "Carbon Fiber Construction", "Top Speed Focus", "Limited Production"]
+    },
+    {
+        id: 30,
+        name: "SSC Tuatara",
+        brand: "SSC",
+        price: 1625000,
+        year: 2024,
+        hp: 1750,
+        topSpeed: 295,
+        image: "assets/images/rols3.jpg",
+        images: ["assets/images/rols3.jpg"],
+        specs: {
+            engine: "5.9L V8 Twin-Turbo",
+            transmission: "7-Speed Manual/Auto",
+            acceleration: "2.5 seconds 0-60mph",
+            weight: "2,750 lbs"
+        },
+        features: ["World's Fastest Production Car", "Aerodynamic Design", "Carbon Fiber Body", "American Engineering"]
     }
 ];
 
