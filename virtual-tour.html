@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Showroom Tour - Luxury Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        .tour-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/back1.jpeg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .virtual-tour-section {
+            padding: 80px 0;
+            background: #f8f8f8;
+        }
+        
+        .tour-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .tour-viewer {
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 600px;
+            margin-bottom: 40px;
+        }
+        
+        .tour-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .tour-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tour-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .tour-btn:hover,
+        .tour-btn.active {
+            background: #ffd700;
+            color: #000;
+            border-color: #ffd700;
+        }
+        
+        .tour-info {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 300px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tour-info h3 {
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .hotspots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .hotspot {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #ffd700;
+            border-radius: 50%;
+            cursor: pointer;
+            pointer-events: all;
+            animation: pulse 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(255, 215, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+        
+        .hotspot-tooltip {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .hotspot:hover .hotspot-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .tour-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .ar-viewer {
+            background: linear-gradient(135deg, #333, #000);
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 60px;
+            border-radius: 15px;
+        }
+        
+        .ar-viewer h2 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .ar-viewer p {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .ar-btn {
+            background: #ffd700;
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .ar-btn:hover {
+            background: #ffed4e;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .tour-viewer {
+                height: 400px;
+            }
+            
+            .tour-controls {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .tour-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .tour-info {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-top: 20px;
+                max-width: none;
+            }
+            
+            .hotspot {
+                width: 25px;
+                height: 25px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/images/letter-l-icon-7.png" alt="Luxury Motors">
+                <span>Luxury Motors</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="cars.html" class="nav-link">Inventory</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link favorites-link">❤️ <span class="favorites-count">0</span></a></li>
+                <li><a href="comparison.html" class="nav-link comparison-link">⚖️ <span class="comparison-count">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Tour Hero -->
+    <section class="tour-hero">
+        <div>
+            <h1>Virtual Showroom Tour</h1>
+            <p>Explore our luxury showroom from anywhere</p>
+        </div>
+    </section>
+
+    <!-- Virtual Tour Section -->
+    <section class="virtual-tour-section">
+        <div class="tour-container">
+            <div class="tour-viewer">
+                <img id="tour-image" class="tour-image" src="assets/images/back1.jpeg" alt="Showroom View">
+                
+                <div class="tour-info" id="tour-info">
+                    <h3>Main Showroom</h3>
+                    <p>Welcome to our luxury showroom featuring the world's most exclusive supercars. Navigate through different areas to explore our collection.</p>
+                </div>
+                
+                <div class="hotspots" id="hotspots">
+                    <!-- Hotspots will be added dynamically -->
+                </div>
+                
+                <div class="tour-controls">
+                    <button class="tour-btn active" onclick="changeTourView('main')">Main Floor</button>
+                    <button class="tour-btn" onclick="changeTourView('bugatti')">Bugatti Section</button>
+                    <button class="tour-btn" onclick="changeTourView('mclaren')">McLaren Section</button>
+                    <button class="tour-btn" onclick="changeTourView('lamborghini')">Lamborghini Section</button>
+                    <button class="tour-btn" onclick="changeTourView('office')">Sales Office</button>
+                </div>
+            </div>
+            
+            <div class="tour-features">
+                <div class="feature-card">
+                    <div class="feature-icon">🏢</div>
+                    <h3>360° Views</h3>
+                    <p>Experience our showroom with immersive 360-degree views of every section and vehicle display area.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Interactive Hotspots</h3>
+                    <p>Click on interactive hotspots to learn more about specific vehicles and their unique features.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Take the tour on any device - desktop, tablet, or mobile phone for the ultimate convenience.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Detailed Information</h3>
+                    <p>Get comprehensive information about each vehicle, including specifications and pricing.</p>
+                </div>
+            </div>
+            
+            <div class="ar-viewer">
+                <h2>Augmented Reality Experience</h2>
+                <p>Take your car viewing experience to the next level with AR technology</p>
+                <button class="ar-btn" onclick="startARExperience()">Launch AR Viewer</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/letter-l-icon-7.png" alt="Luxury Motors">
+                    <span>Luxury Motors</span>
+                </div>
+                <p>&copy; 2024 Luxury Motors. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const tourViews = {
+            main: {
+                image: 'assets/images/back1.jpeg',
+                title: 'Main Showroom',
+                description: 'Welcome to our luxury showroom featuring the world\'s most exclusive supercars.',
+                hotspots: [
+                    { x: 30, y: 40, car: 'Bugatti Chiron', price: '$3,200,000' },
+                    { x: 70, y: 60, car: 'McLaren 720S', price: '$315,000' }
+                ]
+            },
+            bugatti: {
+                image: 'assets/images/BACKBUG.jpg',
+                title: 'Bugatti Collection',
+                description: 'Discover the pinnacle of automotive engineering with our exclusive Bugatti collection.',
+                hotspots: [
+                    { x: 50, y: 50, car: 'Bugatti Chiron', price: '$3,200,000' },
+                    { x: 25, y: 70, car: 'Bugatti Divo', price: '$5,800,000' }
+                ]
+            },
+            mclaren: {
+                image: 'assets/images/mclaren.jpg',
+                title: 'McLaren Showcase',
+                description: 'Experience the perfect blend of performance and luxury with McLaren supercars.',
+                hotspots: [
+                    { x: 60, y: 45, car: 'McLaren 720S', price: '$315,000' }
+                ]
+            },
+            lamborghini: {
+                image: 'assets/images/hurican.jpg',
+                title: 'Lamborghini Gallery',
+                description: 'Feel the Italian passion and aggressive styling of Lamborghini vehicles.',
+                hotspots: [
+                    { x: 45, y: 55, car: 'Lamborghini Huracán', price: '$248,000' },
+                    { x: 75, y: 35, car: 'Lamborghini Sián', price: '$3,600,000' }
+                ]
+            },
+            office: {
+                image: 'assets/images/rolls1.jpg',
+                title: 'Sales Office',
+                description: 'Meet with our luxury car specialists in our comfortable consultation area.',
+                hotspots: [
+                    { x: 40, y: 60, car: 'Consultation Desk', price: 'Schedule Meeting' }
+                ]
+            }
+        };
+
+        let currentView = 'main';
+
+        function changeTourView(viewName) {
+            currentView = viewName;
+            const view = tourViews[viewName];
+            
+            // Update active button
+            document.querySelectorAll('.tour-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update image and info
+            document.getElementById('tour-image').src = view.image;
+            document.getElementById('tour-info').innerHTML = `
+                <h3>${view.title}</h3>
+                <p>${view.description}</p>
+            `;
+            
+            // Update hotspots
+            updateHotspots(view.hotspots);
+        }
+
+        function updateHotspots(hotspots) {
+            const hotspotsContainer = document.getElementById('hotspots');
+            hotspotsContainer.innerHTML = '';
+            
+            hotspots.forEach((hotspot, index) => {
+                const hotspotElement = document.createElement('div');
+                hotspotElement.className = 'hotspot';
+                hotspotElement.style.left = hotspot.x + '%';
+                hotspotElement.style.top = hotspot.y + '%';
+                hotspotElement.innerHTML = `
+                    ${index + 1}
+                    <div class="hotspot-tooltip">
+                        ${hotspot.car}<br>
+                        ${hotspot.price}
+                    </div>
+                `;
+                
+                hotspotElement.addEventListener('click', () => {
+                    showHotspotInfo(hotspot);
+                });
+                
+                hotspotsContainer.appendChild(hotspotElement);
+            });
+        }
+
+        function showHotspotInfo(hotspot) {
+            const modal = document.createElement('div');
+            modal.className = 'car-details-modal';
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 500px; padding: 40px; text-align: center;">
+                    <span class="close-modal">&times;</span>
+                    <h2>${hotspot.car}</h2>
+                    <p style="font-size: 1.5rem; color: #ffd700; margin: 20px 0;">${hotspot.price}</p>
+                    <p>Click to learn more about this vehicle or schedule a viewing.</p>
+                    <div style="margin-top: 30px;">
+                        <button class="btn-primary" onclick="bookTestDrive(1)">Schedule Viewing</button>
+                        <button class="btn-secondary" onclick="window.location.href='cars.html'">View Details</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 100);
+            
+            modal.querySelector('.close-modal').addEventListener('click', () => {
+                modal.classList.remove('show');
+                setTimeout(() => document.body.removeChild(modal), 300);
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    setTimeout(() => document.body.removeChild(modal), 300);
+                }
+            });
+        }
+
+        function startARExperience() {
+            showNotification('AR Experience launching... Please allow camera access when prompted.', 'success');
+            
+            // Simulate AR experience
+            setTimeout(() => {
+                const arModal = document.createElement('div');
+                arModal.className = 'car-details-modal';
+                arModal.innerHTML = `
+                    <div class="modal-content" style="max-width: 600px; padding: 40px; text-align: center;">
+                        <span class="close-modal">&times;</span>
+                        <h2>🚗 AR Car Viewer</h2>
+                        <div style="background: #f0f0f0; height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+                            <p style="color: #666;">AR Camera View<br>Point your device at a flat surface</p>
+                        </div>
+                        <p>Use your device to place and view 3D models of our luxury cars in your space.</p>
+                        <div style="margin-top: 30px;">
+                            <button class="btn-primary" onclick="this.closest('.car-details-modal').remove()">Close AR</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(arModal);
+                setTimeout(() => arModal.classList.add('show'), 100);
+                
+                arModal.querySelector('.close-modal').addEventListener('click', () => {
+                    arModal.classList.remove('show');
+                    setTimeout(() => document.body.removeChild(arModal), 300);
+                });
+            }, 2000);
+        }
+
+        // Initialize tour
+        document.addEventListener('DOMContentLoaded', function() {
+            updateHotspots(tourViews.main.hotspots);
+        });
+    </script>
+</body>
+</html>

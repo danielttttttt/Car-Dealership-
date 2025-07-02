@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxury Motors - Premium Car Dealership</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -15,10 +16,12 @@
                 <span>Luxury Motors</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#inventory" class="nav-link">Inventory</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#home" class="nav-link" data-translate="home">Home</a></li>
+                <li><a href="cars.html" class="nav-link" data-translate="inventory">Inventory</a></li>
+                <li><a href="#about" class="nav-link" data-translate="about">About</a></li>
+                <li><a href="#contact" class="nav-link" data-translate="contact">Contact</a></li>
+                <li><a href="#" class="nav-link favorites-link">❤️ <span class="favorites-count">0</span></a></li>
+                <li><a href="#" class="nav-link comparison-link" onclick="showComparison()">⚖️ <span class="comparison-count">0</span></a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -35,62 +38,99 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Experience Luxury</h1>
-            <p>Discover the world's most exclusive supercars</p>
-            <a href="#inventory" class="cta-button">View Collection</a>
+            <h1 data-translate="experienceLuxury">Experience Luxury</h1>
+            <p data-translate="discoverCars">Discover the world's most exclusive supercars</p>
+            <a href="#inventory" class="cta-button" data-translate="viewCollection">View Collection</a>
+        </div>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section class="search-filter-section">
+        <div class="container">
+            <div class="search-filter-controls">
+                <div class="search-box">
+                    <input type="text" id="car-search" placeholder="Search cars...">
+                    <button type="button">🔍</button>
+                </div>
+                <div class="filter-controls">
+                    <select id="brand-filter">
+                        <option value="">All Brands</option>
+                        <option value="Bugatti">Bugatti</option>
+                        <option value="McLaren">McLaren</option>
+                        <option value="Lamborghini">Lamborghini</option>
+                        <option value="Rolls-Royce">Rolls-Royce</option>
+                        <option value="Koenigsegg">Koenigsegg</option>
+                    </select>
+                    <select id="price-filter">
+                        <option value="">All Prices</option>
+                        <option value="under-500k">Under $500K</option>
+                        <option value="500k-1m">$500K - $1M</option>
+                        <option value="1m-3m">$1M - $3M</option>
+                        <option value="over-3m">Over $3M</option>
+                    </select>
+                    <select id="sort-select">
+                        <option value="">Sort By</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="hp-high">Horsepower: High to Low</option>
+                        <option value="speed-high">Top Speed: High to Low</option>
+                        <option value="name">Name: A to Z</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Featured Cars Section -->
     <section id="inventory" class="featured-cars">
         <div class="container">
-            <h2>Featured Collection</h2>
+            <h2 data-translate="featuredCollection">Featured Collection</h2>
             <div class="cars-grid">
-                <div class="car-card">
+                <div class="car-card" data-car-id="1">
                     <img src="assets/images/chiron.jpg" alt="Bugatti Chiron">
                     <div class="car-info">
                         <h3>Bugatti Chiron</h3>
-                        <p>The pinnacle of automotive engineering</p>
+                        <p>1,479 HP • 261 mph</p>
                         <span class="price">$3,200,000</span>
                     </div>
                 </div>
-                <div class="car-card">
-                    <img src="assets/images/mclaren.jpg" alt="McLaren">
+                <div class="car-card" data-car-id="2">
+                    <img src="assets/images/mclaren.jpg" alt="McLaren 720S">
                     <div class="car-info">
                         <h3>McLaren 720S</h3>
-                        <p>Supercar redefined</p>
+                        <p>710 HP • 212 mph</p>
                         <span class="price">$315,000</span>
                     </div>
                 </div>
-                <div class="car-card">
+                <div class="car-card" data-car-id="3">
                     <img src="assets/images/hurican.jpg" alt="Lamborghini Huracan">
                     <div class="car-info">
                         <h3>Lamborghini Huracán</h3>
-                        <p>Pure Italian passion</p>
+                        <p>630 HP • 202 mph</p>
                         <span class="price">$248,000</span>
                     </div>
                 </div>
-                <div class="car-card">
-                    <img src="assets/images/rolls1.jpg" alt="Rolls Royce">
+                <div class="car-card" data-car-id="4">
+                    <img src="assets/images/rolls1.jpg" alt="Rolls Royce Phantom">
                     <div class="car-info">
                         <h3>Rolls-Royce Phantom</h3>
-                        <p>The ultimate luxury experience</p>
+                        <p>563 HP • 155 mph</p>
                         <span class="price">$460,000</span>
                     </div>
                 </div>
-                <div class="car-card">
+                <div class="car-card" data-car-id="5">
                     <img src="assets/images/jesko.jpg" alt="Koenigsegg Jesko">
                     <div class="car-info">
                         <h3>Koenigsegg Jesko</h3>
-                        <p>Swedish hypercar excellence</p>
+                        <p>1,600 HP • 330 mph</p>
                         <span class="price">$3,000,000</span>
                     </div>
                 </div>
-                <div class="car-card">
+                <div class="car-card" data-car-id="6">
                     <img src="assets/images/sian.jpg" alt="Lamborghini Sián">
                     <div class="car-info">
                         <h3>Lamborghini Sián</h3>
-                        <p>Hybrid supercars future</p>
+                        <p>819 HP • 217 mph</p>
                         <span class="price">$3,600,000</span>
                     </div>
                 </div>
@@ -153,21 +193,35 @@
                 </div>
                 <div class="contact-form">
                     <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Your Phone">
-                        <select>
-                            <option>Interested in...</option>
-                            <option>Bugatti</option>
-                            <option>McLaren</option>
-                            <option>Lamborghini</option>
-                            <option>Rolls-Royce</option>
-                            <option>Koenigsegg</option>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="tel" name="phone" placeholder="Your Phone">
+                        <select name="interest">
+                            <option value="">Interested in...</option>
+                            <option value="Bugatti">Bugatti</option>
+                            <option value="McLaren">McLaren</option>
+                            <option value="Lamborghini">Lamborghini</option>
+                            <option value="Rolls-Royce">Rolls-Royce</option>
+                            <option value="Koenigsegg">Koenigsegg</option>
                         </select>
-                        <textarea placeholder="Your Message" rows="5"></textarea>
+                        <textarea name="message" placeholder="Your Message" rows="5"></textarea>
                         <button type="submit">Send Message</button>
                     </form>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Get notified about new arrivals and exclusive offers</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
             </div>
         </div>
     </section>
