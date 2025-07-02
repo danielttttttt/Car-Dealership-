@@ -16,7 +16,53 @@ document.addEventListener('DOMContentLoaded', function() {
 function initNavigation() {
     const navbar = document.querySelector('.navbar');
     const navLinks = document.querySelectorAll('.nav-links a');
-    
+    const hamburger = document.querySelector('.hamburger');
+    const navLinksContainer = document.querySelector('.nav-links');
+
+    // Hamburger menu toggle
+    if (hamburger && navLinksContainer) {
+        hamburger.addEventListener('click', function() {
+            navLinksContainer.classList.toggle('active');
+            hamburger.classList.toggle('active');
+
+            // Animate hamburger lines
+            const spans = hamburger.querySelectorAll('span');
+            if (hamburger.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Close menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinksContainer.classList.remove('active');
+                hamburger.classList.remove('active');
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navbar.contains(e.target)) {
+                navLinksContainer.classList.remove('active');
+                hamburger.classList.remove('active');
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    }
+
     // Add scroll effect to navbar
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
