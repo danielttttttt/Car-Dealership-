@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Gallery - Luxury Motors</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/BACKBUG.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .gallery-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .gallery-section {
+            padding: 80px 0;
+        }
+        
+        .brand-section {
+            margin-bottom: 80px;
+        }
+        
+        .brand-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #333;
+            font-weight: 300;
+            position: relative;
+        }
+        
+        .brand-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #ffd700;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            padding: 10px 25px;
+            margin: 0 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #ffd700;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/images/letter-l-icon-7.png" alt="Luxury Motors">
+                <span>Luxury Motors</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="cars.html" class="nav-link">Inventory</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Gallery Hero -->
+    <section class="gallery-hero">
+        <div>
+            <h1>Our Exclusive Collection</h1>
+            <p>Discover the world's most prestigious supercars</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Bugatti</button>
+                <button class="filter-btn">McLaren</button>
+                <button class="filter-btn">Lamborghini</button>
+                <button class="filter-btn">Rolls-Royce</button>
+                <button class="filter-btn">Koenigsegg</button>
+            </div>
+
+            <!-- Bugatti Section -->
+            <div class="brand-section">
+                <h2 class="brand-title">Bugatti Collection</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="assets/images/chiron.jpg" alt="Bugatti Chiron">
+                        <div class="gallery-overlay">
+                            <h3>Bugatti Chiron</h3>
+                            <p>1,479 HP | 261 mph | $3,200,000</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/divo2.jpg" alt="Bugatti Divo">
+                        <div class="gallery-overlay">
+                            <h3>Bugatti Divo</h3>
+                            <p>1,479 HP | Track-focused | $5,800,000</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/divo3.jpeg" alt="Bugatti Divo Sport">
+                        <div class="gallery-overlay">
+                            <h3>Bugatti Divo Sport</h3>
+                            <p>Limited Edition | $6,000,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- McLaren Section -->
+            <div class="brand-section">
+                <h2 class="brand-title">McLaren Collection</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="assets/images/mclaren.jpg" alt="McLaren 720S">
+                        <div class="gallery-overlay">
+                            <h3>McLaren 720S</h3>
+                            <p>710 HP | 212 mph | $315,000</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/mc720.jpg" alt="McLaren 720S Spider">
+                        <div class="gallery-overlay">
+                            <h3>McLaren 720S Spider</h3>
+                            <p>710 HP | Convertible | $335,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lamborghini Section -->
+            <div class="brand-section">
+                <h2 class="brand-title">Lamborghini Collection</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="assets/images/hurican.jpg" alt="Lamborghini Huracan">
+                        <div class="gallery-overlay">
+                            <h3>Lamborghini Huracán</h3>
+                            <p>630 HP | 202 mph | $248,000</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/sian.jpg" alt="Lamborghini Sián">
+                        <div class="gallery-overlay">
+                            <h3>Lamborghini Sián</h3>
+                            <p>819 HP | Hybrid | $3,600,000</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/ursu.jpg" alt="Lamborghini Urus">
+                        <div class="gallery-overlay">
+                            <h3>Lamborghini Urus</h3>
+                            <p>641 HP | Super SUV | $218,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rolls-Royce Section -->
+            <div class="brand-section">
+                <h2 class="brand-title">Rolls-Royce Collection</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="assets/images/rolls1.jpg" alt="Rolls-Royce Phantom">
+                        <div class="gallery-overlay">
+                            <h3>Rolls-Royce Phantom</h3>
+                            <p>563 HP | Ultimate Luxury | $460,000</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/rols2.jpg" alt="Rolls-Royce Cullinan">
+                        <div class="gallery-overlay">
+                            <h3>Rolls-Royce Cullinan</h3>
+                            <p>563 HP | Luxury SUV | $330,000</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/rols3.jpg" alt="Rolls-Royce Ghost">
+                        <div class="gallery-overlay">
+                            <h3>Rolls-Royce Ghost</h3>
+                            <p>563 HP | Modern Luxury | $315,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Koenigsegg Section -->
+            <div class="brand-section">
+                <h2 class="brand-title">Koenigsegg Collection</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="assets/images/jesko.jpg" alt="Koenigsegg Jesko">
+                        <div class="gallery-overlay">
+                            <h3>Koenigsegg Jesko</h3>
+                            <p>1,600 HP | 330 mph | $3,000,000</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/rev.jpg" alt="Koenigsegg Regera">
+                        <div class="gallery-overlay">
+                            <h3>Koenigsegg Regera</h3>
+                            <p>1,500 HP | Hybrid | $1,900,000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/letter-l-icon-7.png" alt="Luxury Motors">
+                    <span>Luxury Motors</span>
+                </div>
+                <p>&copy; 2024 Luxury Motors. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
